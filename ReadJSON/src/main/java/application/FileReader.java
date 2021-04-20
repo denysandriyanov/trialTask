@@ -68,7 +68,7 @@ public class FileReader
         {
             if (key != null)
                 ConditionMatcher.checkFieldValue(key, node);
-            
+
             List<Object> objectsList = new ArrayList<>();
             Iterator<JsonNode> fieldsIterator = node.elements();
             while (fieldsIterator.hasNext())

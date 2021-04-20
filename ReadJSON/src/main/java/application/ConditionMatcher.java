@@ -37,7 +37,7 @@ public final class ConditionMatcher
         ConditionMatcher.expectedValue = expectedValue;
         expecedFieldsFound = 0;
         expectedValuesFound = 0;
-        
+
     }
 
     /**
@@ -54,12 +54,12 @@ public final class ConditionMatcher
         if (field.equals(expectedField))
         {
             expecedFieldsFound++;
-            
+
             if (value.equals(mapper.readTree(String.valueOf(expectedValue))))
                 expectedValuesFound++;
         }
     }
-                    
+
     /**
      * @return the expecedFieldsFound value
      */

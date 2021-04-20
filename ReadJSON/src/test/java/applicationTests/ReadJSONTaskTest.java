@@ -114,9 +114,8 @@ public class ReadJSONTaskTest
         }
         else
         {
-            assertTrue("There should be no error messages", this.errContent.toString().isEmpty()); 
             assertEquals(this.expectedOutput, this.outContent.toString()); 
-
+            assertTrue("There should be no error messages", this.errContent.toString().isEmpty()); 
         }
     }
 }

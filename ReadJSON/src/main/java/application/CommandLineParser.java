@@ -9,7 +9,7 @@ public class CommandLineParser
     private String filePath;
     private String field;
     private String value;  
-    
+
     /**
      * Constructs CommandLineParser 
      * 
@@ -21,7 +21,7 @@ public class CommandLineParser
         this.field = arguments[1];
         this.value = arguments.length == 3 ? arguments[2] : null ;   
     }
-     
+
     /**
      * @return the filePath
      */
@@ -37,7 +37,7 @@ public class CommandLineParser
     {
         return this.field;
     }
-    
+
     /**
      * @return the fieldValue
      */
