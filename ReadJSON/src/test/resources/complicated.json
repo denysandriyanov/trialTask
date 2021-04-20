@@ -1,0 +1,34 @@
+[{
+  "title" : "Thinking in Java",
+  "isbn" : "978-0131872486",
+  "year" : 1998,
+  "authors" : [ "Bruce Eckel", "Victor Pavlik" ]
+},
+{
+  "title" : "Thinking in something else",
+  "isbn" : "978-01318724863",
+  "year" : 19984,
+  "authors" : 
+[
+{
+  "age": 29,
+  "name" : "Denys"
+},
+{
+  "age": "29",
+  "name" : "Victor"
+},
+{
+  "age": "29",
+  "year" : 19984,
+  "name" : 
+[
+"Denys",
+{
+  "firstName": "Arkasha",
+  "secondName" : "Pasha"
+}
+]
+}
+]
+}]
