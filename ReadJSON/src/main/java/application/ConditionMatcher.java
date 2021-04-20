@@ -55,10 +55,8 @@ public final class ConditionMatcher
         if (field.equals(expectedField))
         {
             expecedFieldsFound++;
-
-            JsonNode actualObj = mapper.readTree(String.valueOf(expectedValue));
             
-            if (value.equals(actualObj))
+            if (value.equals(mapper.readTree(String.valueOf(expectedValue))))
                 expectedValuesFound++;
         }
     }
