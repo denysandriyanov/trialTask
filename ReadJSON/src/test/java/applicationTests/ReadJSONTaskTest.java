@@ -63,14 +63,15 @@ public class ReadJSONTaskTest
         params.add(new CommonParams("src/test/resources/wrongFormat.json", "Failed to parse JSON file"));
         params.add(new CommonParams("src/test/resources/simple.json", "title", "\"Thinking in Java\"", 1, 1));
         params.add(new CommonParams("src/test/resources/simple.json", "title", "\"Hello Wordl\"", 1, 0));
-        params.add(new CommonParams("src/test/resources/complicated.json", "isbn", EMPTYSTRING, 2, 0));
-        params.add(new CommonParams("src/test/resources/complicated.json", "isbn", "\"978-0131872486\"", 2, 1));
-        params.add(new CommonParams("src/test/resources/complicated.json", "authors", "\"Denys\"", 2, 0));
-        params.add(new CommonParams("src/test/resources/complicated.json", "authors", "[\"Bruce Eckel\",\"Victor Pavlik\"]", 2, 1));
-        params.add(new CommonParams("src/test/resources/complicated.json", "name", "\"Victor\"", 3, 1));
-        params.add(new CommonParams("src/test/resources/complicated.json", "age", "29", 3, 1));
-        params.add(new CommonParams("src/test/resources/complicated.json", "age", "\"29\"", 3, 2));
-        params.add(new CommonParams("src/test/resources/complicated.json", "name", "[\"Denys\",{\"firstName\":\"Arkasha\",\"secondName\":\"Pasha\"}]", 3, 1));
+        params.add(new CommonParams("src/test/resources/simple.json", "abrakadabra", "\"Hello Wordl\"", 0, 0));
+        params.add(new CommonParams("src/test/resources/advanced.json", "isbn", EMPTYSTRING, 2, 0));
+        params.add(new CommonParams("src/test/resources/advanced.json", "isbn", "\"978-0131872486\"", 2, 1));
+        params.add(new CommonParams("src/test/resources/advanced.json", "authors", "\"Denys\"", 2, 0));
+        params.add(new CommonParams("src/test/resources/advanced.json", "authors", "[\"Bruce Eckel\",\"Victor Pavlik\"]", 2, 1));
+        params.add(new CommonParams("src/test/resources/advanced.json", "name", "\"Victor\"", 3, 1));
+        params.add(new CommonParams("src/test/resources/advanced.json", "age", "29", 3, 1));
+        params.add(new CommonParams("src/test/resources/advanced.json", "age", "\"29\"", 3, 2));
+        params.add(new CommonParams("src/test/resources/advanced.json", "name", "[\"Denys\",{\"firstName\":\"Arkasha\",\"secondName\":\"Pasha\"}]", 3, 1));
 
         return params;
     }
