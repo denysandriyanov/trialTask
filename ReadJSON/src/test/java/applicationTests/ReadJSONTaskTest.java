@@ -27,7 +27,7 @@ public class ReadJSONTaskTest
     private String expectedOutput;
     private String fieldToSearch;
     private Object valueToSearch;
-    private boolean isErrorMessage;
+    private boolean errorMessageExpected;
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -45,7 +45,7 @@ public class ReadJSONTaskTest
         this.fieldToSearch = params.getFieldToSearch();
         this.valueToSearch = params.getValueToSearch();
         this.expectedOutput = params.getExpectedOutput();
-        this.isErrorMessage = params.getIsErrorMessage();
+        this.errorMessageExpected = params.getIsErrorMessage();
     }
 
     /**
@@ -107,7 +107,7 @@ public class ReadJSONTaskTest
 
         ReadJSONTask.main(args);
 
-        if (this.isErrorMessage)
+        if (this.errorMessageExpected)
         {
             assertEquals(this.expectedOutput, this.errContent.toString());
             assertTrue("There should be no results displayed after error", this.outContent.toString().isEmpty());
