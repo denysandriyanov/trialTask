@@ -41,7 +41,7 @@ public class CommandLineParser
     /**
      * @return the fieldValue
      */
-    public Object getValue()
+    public String getValue()
     {
         return this.value;
     }

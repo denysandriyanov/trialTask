@@ -32,7 +32,7 @@ public class FileReader
         if (file.exists() &&  file.isFile())
             this.filePath = filePath;   
         else
-            throw new FileNotFoundException("File does not exist " + filePath); 
+            throw new FileNotFoundException("File does not exist"); 
     }
 
 
@@ -41,17 +41,17 @@ public class FileReader
      * 
      * @throws IllegalStateException
      */
-    public void analyzeFile() throws IllegalStateException
+    public void analyze() throws IllegalStateException
     {
         try 
         {
             ObjectMapper mapper = new ObjectMapper();
-            JsonNode rootNode = mapper.readTree(Paths.get(filePath).toFile());
+            JsonNode rootNode = mapper.readTree(Paths.get(this.filePath).toFile());
             parseNode(null, rootNode);
         } 
         catch (Exception ex)
         {
-            throw new IllegalStateException("Failed to parse JSON file " + ex.getMessage());
+            throw new IllegalStateException("Failed to parse JSON file");
         }
     }
 

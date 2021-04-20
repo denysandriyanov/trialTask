@@ -1,8 +1,5 @@
 package application;
 
-import java.io.IOException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 /**
  * Finds and prints count of objects and values (optional) in JSON file
  * 
@@ -10,25 +7,38 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class ReadJSONTask 
 {
     /**
-     * @param args
-     * @throws IOException 
-     * @throws JsonProcessingException 
-     * @throws IllegalStateException 
+     * @param args as pathTofile fieldToFind valueToFind(optional)
      */
-    public static void main(String[] args) throws IllegalStateException, IOException
+    public static void main(String[] args) 
     {        
         CommandLineParser arguments = new CommandLineParser(args);
-        
+
         ConditionMatcher.init(arguments.getField(), arguments.getValue());
 
-        new FileReader(arguments.getFilePath()).analyzeFile();
-               
-        printResults(arguments.getField(), arguments.getValue());
+        if (analyzeFile(arguments))
+            printResults(arguments.getField(), arguments.getValue());
     }
-  
-    private static void printResults(String fieldName, Object valueName)
+    
+    
+    private static boolean analyzeFile(CommandLineParser arguments)
     {
-        System.out.println("Found " + ConditionMatcher.getExpecedFieldsFound() + " objects with field " + fieldName);
-        System.out.println("Found " + ConditionMatcher.getExpectedValuesFound() + " objects with field " + valueName.toString());
+        try
+        {
+            new FileReader(arguments.getFilePath()).analyze();
+        }
+        catch (Exception x)
+        {
+            System.err.print(x.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    private static void printResults(String fieldName, String valueName)
+    {
+        System.out.println("-found " + ConditionMatcher.getExpecedFieldsFound() + " objects with field \"" + fieldName + "\"");
+        
+        if (valueName != null)
+            System.out.println("-found " + ConditionMatcher.getExpectedValuesFound() + " objects where field " + "\"" + fieldName + "\" equals " + "\"" + valueName + "\"");
     }
 }

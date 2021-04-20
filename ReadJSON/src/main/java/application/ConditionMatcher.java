@@ -1,5 +1,10 @@
 package application;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 /**
  * This class is for checking that field matches expectedField and if value matches expectedValue
@@ -11,7 +16,8 @@ public final class ConditionMatcher
     private static int expecedFieldsFound;
     private static int expectedValuesFound;
     private static String expectedValue;
-    private static String expectedField; 
+    private static String expectedField;
+    private static ObjectMapper mapper = new ObjectMapper();
 
     /**
      * Don't let anyone instantiate this class.
@@ -26,10 +32,13 @@ public final class ConditionMatcher
      * @param expectedField the expected field value
      * @param expectedValue the expected value value
      */
-    public static void init(String expectedField, Object expectedValue) 
+    public static void init(String expectedField, String expectedValue)
     {
         ConditionMatcher.expectedField = expectedField;
-        ConditionMatcher.expectedValue = String.valueOf(expectedValue);
+        ConditionMatcher.expectedValue = expectedValue;
+        expecedFieldsFound = 0;
+        expectedValuesFound = 0;
+        
     }
 
     /**
@@ -38,18 +47,22 @@ public final class ConditionMatcher
      * 
      * @param field the field to check
      * @param value the value to check
+     * @throws JsonProcessingException 
+     * @throws JsonMappingException 
      */
-    public static void checkFieldValue(String field, Object value)
+    public static void checkFieldValue(String field, Object value) throws JsonProcessingException
     {
         if (field.equals(expectedField))
         {
             expecedFieldsFound++;
 
-            if (expectedValue != null && String.valueOf(value).equals(expectedValue))
+            JsonNode actualObj = mapper.readTree(String.valueOf(expectedValue));
+            
+            if (value.equals(actualObj))
                 expectedValuesFound++;
         }
     }
-
+                    
     /**
      * @return the expecedFieldsFound value
      */
@@ -65,6 +78,4 @@ public final class ConditionMatcher
     {
         return expectedValuesFound;
     }
-
-
 }
