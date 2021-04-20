@@ -9,6 +9,7 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    id 'java'
 }
 
 repositories {
@@ -32,6 +33,11 @@ dependencies {
 jar {
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 	destinationDirectory = file("$rootDir/jars")
+	manifest {
+        attributes(
+                'Main-Class': 'application.ReadJSONTask'
+        )
+    }
 	from sourceSets.main.allSource
     dependsOn configurations.runtimeClasspath
   	from {
