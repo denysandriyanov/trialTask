@@ -36,9 +36,9 @@ public class ReadJSONTask
 
     private static void printResults(String fieldName, String valueName)
     {
-        System.out.println("-found " + ConditionMatcher.getExpecedFieldsFound() + " objects with field \"" + fieldName + "\"");
+        System.out.println("-found " + ConditionMatcher.getFoundFieldsCount() + " objects with field \"" + fieldName + "\"");
 
         if (valueName != null)
-            System.out.println("-found " + ConditionMatcher.getExpectedValuesFound() + " objects where field " + "\"" + fieldName + "\" equals " + "\"" + valueName + "\"");
+            System.out.println("-found " + ConditionMatcher.getFoundValuesCount() + " objects where field " + "\"" + fieldName + "\" equals " + "\"" + valueName + "\"");
     }
 }

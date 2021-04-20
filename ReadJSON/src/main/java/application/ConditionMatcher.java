@@ -12,8 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public final class ConditionMatcher
 {
-    private static int expecedFieldsFound;
-    private static int expectedValuesFound;
+    private static int foundFieldsCount;
+    private static int foundValuesCount;
     private static String expectedValue;
     private static String expectedField;
     private static ObjectMapper mapper = new ObjectMapper();
@@ -35,8 +35,8 @@ public final class ConditionMatcher
     {
         ConditionMatcher.expectedField = expectedField;
         ConditionMatcher.expectedValue = expectedValue;
-        expecedFieldsFound = 0;
-        expectedValuesFound = 0;
+        foundFieldsCount = 0;
+        foundValuesCount = 0;
 
     }
 
@@ -53,26 +53,26 @@ public final class ConditionMatcher
     {
         if (field.equals(expectedField))
         {
-            expecedFieldsFound++;
+            foundFieldsCount++;
 
             if (value.equals(mapper.readTree(String.valueOf(expectedValue))))
-                expectedValuesFound++;
+                foundValuesCount++;
         }
     }
 
     /**
-     * @return the expecedFieldsFound value
+     * @return the foundFieldsCount value
      */
-    public static int getExpecedFieldsFound()
+    public static int getFoundFieldsCount()
     {
-        return expecedFieldsFound;
+        return foundFieldsCount;
     }
 
     /**
-     * @return the expectedValuesFound value
+     * @return the foundValuesCount value
      */
-    public static int getExpectedValuesFound()
+    public static int getFoundValuesCount()
     {
-        return expectedValuesFound;
+        return foundValuesCount;
     }
 }
