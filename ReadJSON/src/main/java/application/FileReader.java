@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Reads JSON file and gets a list of map representations for each found object
+ * Reads JSON file and go through the it travers to access each field/value pairs
  * 
  */
 public class FileReader
