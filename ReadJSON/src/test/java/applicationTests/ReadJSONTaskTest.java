@@ -99,9 +99,7 @@ public class ReadJSONTaskTest
     @Test
     public void executeAppAndVerifyOutput()
     {
-        String[] args = new String[] {this.pathToFile, this.fieldToSearch, String.valueOf(this.valueToSearch)};
-
-        ReadJSONTask.main(args);
+        ReadJSONTask.main(new String[] {this.pathToFile, this.fieldToSearch, String.valueOf(this.valueToSearch)});
 
         if (this.errorMessageExpected)
         {
