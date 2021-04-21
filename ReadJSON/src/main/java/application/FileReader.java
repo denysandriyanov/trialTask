@@ -51,7 +51,7 @@ public class FileReader
         } 
         catch (Exception ex)
         {
-            throw new IllegalStateException("Failed to parse JSON file");
+            throw new IllegalArgumentException("Failed to parse JSON file");
         }
     }
 
