@@ -1,7 +1,6 @@
 package application;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -24,35 +23,40 @@ public class FileReader
      * Constructor
      * 
      * @param filePath the path to JSON file
-     * @throws FileNotFoundException
      */
-    public FileReader(String filePath) throws FileNotFoundException
+    public FileReader(String filePath)
     {
-        File file = new File(filePath);
+        File file = new File(filePath);        
         if (file.exists() &&  file.isFile())
             this.filePath = filePath;   
         else
-            throw new FileNotFoundException("File does not exist"); 
+            System.err.print("File does not exist");
     }
+
 
 
     /**
      * Reads JSON file structure and parses it
      * 
-     * @throws IllegalStateException
+     * @return true if analyzed successfully
      */
-    public void analyze() throws IllegalStateException
+    public boolean analyze()
     {
-        try 
+        if (this.filePath != null)
         {
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode rootNode = mapper.readTree(Paths.get(this.filePath).toFile());
-            parseNode(null, rootNode);
-        } 
-        catch (Exception ex)
-        {
-            throw new IllegalArgumentException("Failed to parse JSON file");
+            try 
+            {
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode rootNode = mapper.readTree(Paths.get(this.filePath).toFile());
+                parseNode(null, rootNode);
+                return true;
+            } 
+            catch (Exception ex)
+            {
+                System.err.print("Failed to parse JSON file");
+            }
         }
+        return false;
     }
 
     /**

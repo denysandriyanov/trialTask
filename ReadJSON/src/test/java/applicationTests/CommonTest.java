@@ -9,7 +9,7 @@ public abstract class CommonTest
 {
     protected final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     protected final ByteArrayOutputStream errContent = new ByteArrayOutputStream();     
-  
+
     /**
      * Setting up output streams
      */

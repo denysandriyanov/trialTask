@@ -17,31 +17,17 @@ public class ReadJSONTask
         {
             ConditionMatcher.init(arguments.getField(), arguments.getValue());
 
-            if (analyzeFile(arguments))
+            if (new FileReader(arguments.getFilePath()).analyze())
                 printResults(arguments.getField(), arguments.getValue());
         }
     }
 
 
-private static boolean analyzeFile(CommandLineParser arguments)
-{
-    try
+    private static void printResults(String fieldName, String valueName)
     {
-        new FileReader(arguments.getFilePath()).analyze();
-    }
-    catch (Exception x)
-    {
-        System.err.print(x.getMessage());
-        return false;
-    }
-    return true;
-}
+        System.out.println("-found " + ConditionMatcher.getFoundFieldsCount() + " objects with field \"" + fieldName + "\"");
 
-private static void printResults(String fieldName, String valueName)
-{
-    System.out.println("-found " + ConditionMatcher.getFoundFieldsCount() + " objects with field \"" + fieldName + "\"");
-
-    if (valueName != null)
-        System.out.println("-found " + ConditionMatcher.getFoundValuesCount() + " objects where field " + "\"" + fieldName + "\" equals " + "\"" + valueName + "\"");
-}
+        if (valueName != null)
+            System.out.println("-found " + ConditionMatcher.getFoundValuesCount() + " objects where field " + "\"" + fieldName + "\" equals " + "\"" + valueName + "\"");
+    }
 }

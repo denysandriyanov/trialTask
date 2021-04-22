@@ -8,7 +8,7 @@ public abstract class Params //implements ProvidingOutputInfo
 {
     private String pathToFile;
     protected String fieldToSearch;
-    
+
     /**
      * @param pathToFile the path to file parameter
      * @param fieldToSearch the field to search parameter
@@ -18,7 +18,7 @@ public abstract class Params //implements ProvidingOutputInfo
         this.pathToFile = pathToFile;
         this.fieldToSearch = fieldToSearch;
     }
-    
+
     /**
      * @return the pathToFile
      */
@@ -26,7 +26,7 @@ public abstract class Params //implements ProvidingOutputInfo
     {
         return this.pathToFile;
     }
-    
+
     /**
      * @return the fieldToSearch
      */
@@ -34,20 +34,20 @@ public abstract class Params //implements ProvidingOutputInfo
     {
         return this.fieldToSearch;
     }
-    
+
     /**
      * @return the expected output message
      */
     public abstract String getExpectedOutput();
-    
-     /**
+
+    /**
      * @return the valueToSearch
      */
     public abstract Object getValueToSearch();
-    
+
     /**
      * @return true if expected output is error message
      */
     public abstract boolean getErrorMessageIsExpected();
-    
+
 }

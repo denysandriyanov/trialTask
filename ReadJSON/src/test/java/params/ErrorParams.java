@@ -5,7 +5,7 @@ public class ErrorParams extends Params
 {
     private String expectedErrorMessage;
     private final static String EMPTYSTRING = "";
-    
+
     /**
      * @param pathToFile the path to file parameter
      * @param fieldToSearch the field to search parameter
@@ -25,7 +25,7 @@ public class ErrorParams extends Params
     {
         this(pathToFile, EMPTYSTRING, expectedErrorMessage);
     }    
-    
+
     @Override
     public String getExpectedOutput()
     {

@@ -20,7 +20,7 @@ public class CommonParams extends Params
         this.expectedFieldsCount = expectedFieldsCount;
         this.expectedValuesCount = expectedValuesCount;
     }
-    
+
     /**
      * @return the expectedFieldsCount
      */
@@ -43,11 +43,11 @@ public class CommonParams extends Params
     @Override
     public String getExpectedOutput()
     {
-            return("-found " + this.expectedFieldsCount +" objects with field \"" + this.fieldToSearch + "\"\r\n"
-                            + "-found " + this.expectedValuesCount +" objects where field \"" 
-                            + this.fieldToSearch + "\" equals \"" + this.valueToSearch + "\"\r\n");
+        return("-found " + this.expectedFieldsCount +" objects with field \"" + this.fieldToSearch + "\"\r\n"
+                        + "-found " + this.expectedValuesCount +" objects where field \"" 
+                        + this.fieldToSearch + "\" equals \"" + this.valueToSearch + "\"\r\n");
     }
- 
+
     /**
      * @return the valueToSearch
      */

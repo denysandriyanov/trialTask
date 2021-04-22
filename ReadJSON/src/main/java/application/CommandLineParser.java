@@ -26,8 +26,8 @@ public class CommandLineParser
             this.validated = true;
         }
     }
-    
-    
+
+
     private boolean validateArgs(String[] args)
     {
         if (args.length < 2 || args[0].isEmpty() || args[1].isEmpty())
@@ -61,7 +61,7 @@ public class CommandLineParser
     {
         return this.value;
     }
-    
+
     /**
      * @return true if arguments are valid
      */
@@ -70,5 +70,5 @@ public class CommandLineParser
         return this.validated;
     }
 
-    
+
 }

@@ -26,7 +26,7 @@ public class ExecuteAppAndVerifyOutputTest extends CommonTest
     {
         this.params = params;
     }
-    
+
     /**
      * This test executes application passing various input parameters and verifies the output result
      * 
@@ -37,11 +37,11 @@ public class ExecuteAppAndVerifyOutputTest extends CommonTest
         ReadJSONTask.main(new String[] {this.params.getPathToFile(), this.params.getFieldToSearch(), String.valueOf(this.params.getValueToSearch())});;
 
         if (this.params.getErrorMessageIsExpected())
-           this.checkOutputError();
+            this.checkOutputError();
         else
             this.checkSearchResult();
     }
-    
+
     /**
      * Asserts that output matches expected error message and there is no more information displayed afterwards
      * 
@@ -51,7 +51,7 @@ public class ExecuteAppAndVerifyOutputTest extends CommonTest
         assertEquals(this.params.getExpectedOutput(), this.errContent.toString());
         assertTrue("There should be no results displayed after error", this.outContent.toString().isEmpty());
     }
-    
+
     /**
      * Asserts that search results matches expected and there are no error messages displayed
      * 
@@ -61,7 +61,7 @@ public class ExecuteAppAndVerifyOutputTest extends CommonTest
         assertEquals(this.params.getExpectedOutput(), this.outContent.toString()); 
         assertTrue("There should be no error messages", this.errContent.toString().isEmpty()); 
     }
-    
+
     /**
      * Creates list of param objects for the test
      * 
@@ -71,7 +71,7 @@ public class ExecuteAppAndVerifyOutputTest extends CommonTest
     public static List<Params> testDataProvider()
     {
         List<Params> params = new ArrayList<>();
-        
+
         params.add(new ErrorParams(EMPTYSTRING,"ReadJSONTask: [pathToFie] [specificField] [specificValue] (optional)"));
         params.add(new ErrorParams("src/test/resources/blabla.json", "anything","File does not exist"));
         params.add(new ErrorParams("src/test/resources/wrongFormat.json", "anything", "Failed to parse JSON file"));
@@ -88,4 +88,4 @@ public class ExecuteAppAndVerifyOutputTest extends CommonTest
         params.add(new CommonParams("src/test/resources/advanced.json", "name", "[\"Denys\",{\"firstName\":\"Arkasha\",\"secondName\":\"Pasha\"}]", 3, 1));
         return params;
     }
- }
+}
