@@ -13,32 +13,35 @@ public class ReadJSONTask
     {        
         CommandLineParser arguments = new CommandLineParser(args);
 
-        ConditionMatcher.init(arguments.getField(), arguments.getValue());
-
-        if (analyzeFile(arguments))
-            printResults(arguments.getField(), arguments.getValue());
-    }
-
-
-    private static boolean analyzeFile(CommandLineParser arguments)
-    {
-        try
+        if (arguments.validated())
         {
-            new FileReader(arguments.getFilePath()).analyze();
+            ConditionMatcher.init(arguments.getField(), arguments.getValue());
+
+            if (analyzeFile(arguments))
+                printResults(arguments.getField(), arguments.getValue());
         }
-        catch (Exception x)
-        {
-            System.err.print(x.getMessage());
-            return false;
-        }
-        return true;
     }
 
-    private static void printResults(String fieldName, String valueName)
+
+private static boolean analyzeFile(CommandLineParser arguments)
+{
+    try
     {
-        System.out.println("-found " + ConditionMatcher.getFoundFieldsCount() + " objects with field \"" + fieldName + "\"");
-
-        if (valueName != null)
-            System.out.println("-found " + ConditionMatcher.getFoundValuesCount() + " objects where field " + "\"" + fieldName + "\" equals " + "\"" + valueName + "\"");
+        new FileReader(arguments.getFilePath()).analyze();
     }
+    catch (Exception x)
+    {
+        System.err.print(x.getMessage());
+        return false;
+    }
+    return true;
+}
+
+private static void printResults(String fieldName, String valueName)
+{
+    System.out.println("-found " + ConditionMatcher.getFoundFieldsCount() + " objects with field \"" + fieldName + "\"");
+
+    if (valueName != null)
+        System.out.println("-found " + ConditionMatcher.getFoundValuesCount() + " objects where field " + "\"" + fieldName + "\" equals " + "\"" + valueName + "\"");
+}
 }

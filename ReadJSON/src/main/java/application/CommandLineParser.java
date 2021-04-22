@@ -9,17 +9,33 @@ public class CommandLineParser
     private String filePath;
     private String field;
     private String value;  
+    private boolean validated;
 
     /**
      * Constructs CommandLineParser 
      * 
-     * @param arguments command line arguments
+     * @param args command line arguments
      */
-    public CommandLineParser(String[] arguments)
+    public CommandLineParser(String[] args)
     {
-        this.filePath = arguments[0];
-        this.field = arguments[1];
-        this.value = arguments.length == 3 ? arguments[2] : null ;   
+        if (this.validateArgs(args))
+        {
+            this.filePath = args[0];
+            this.field = args[1];
+            this.value = args.length == 3 ? args[2] : null;
+            this.validated = true;
+        }
+    }
+    
+    
+    private boolean validateArgs(String[] args)
+    {
+        if (args.length < 2 || args[0].isEmpty() || args[1].isEmpty())
+        {
+            System.err.print("ReadJSONTask: [pathToFie] [specificField] [specificValue] (optional)");
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -45,4 +61,14 @@ public class CommandLineParser
     {
         return this.value;
     }
+    
+    /**
+     * @return true if arguments are valid
+     */
+    public boolean validated()
+    {
+        return this.validated;
+    }
+
+    
 }
