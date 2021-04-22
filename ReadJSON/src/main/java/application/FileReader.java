@@ -33,8 +33,6 @@ public class FileReader
             System.err.print("File does not exist");
     }
 
-
-
     /**
      * Reads JSON file structure and parses it
      * 
@@ -63,31 +61,25 @@ public class FileReader
      * Gets the list of keys and vales contained in the node
      * Calls matcher on each key/value pair
      * 
-     * @return List if JSON objects in map representation
      * @throws IllegalStateException
      */
-    private static Object parseNode(String key, final JsonNode node) throws IOException 
+    private static void parseNode(String key, final JsonNode node) throws IOException 
     {       
         if (node.isArray())
         {
             if (key != null)
                 ConditionMatcher.checkFieldValue(key, node);
 
-            List<Object> objectsList = new ArrayList<>();
             Iterator<JsonNode> fieldsIterator = node.elements();
             while (fieldsIterator.hasNext())
             {
                 JsonNode field = fieldsIterator.next();
-                objectsList.add(parseNode(key, field));
+                parseNode(key, field);
             }
-            return objectsList;
         }
-        else if (node.isValueNode())
-            return node;
         else            
         {
             Iterator<Map.Entry<String, JsonNode>> fieldsIterator = node.fields();
-            Map<String, Object> objectMap = new HashMap<>();
 
             while (fieldsIterator.hasNext()) 
             {
@@ -96,14 +88,10 @@ public class FileReader
                 JsonNode value = field.getValue();
 
                 if (value.isContainerNode()) 
-                    objectMap.put(nodeKey, parseNode(nodeKey, value));
+                    parseNode(nodeKey, value);
                 else
-                {
                     ConditionMatcher.checkFieldValue(nodeKey, value);
-                    objectMap.put(nodeKey, value);
-                }
             }
-            return objectMap;
         }
     }
 }
